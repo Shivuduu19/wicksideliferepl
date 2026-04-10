@@ -373,7 +373,7 @@ const Cursor = ({
 
         const configs = Array.isArray(opts.pathConfigs[typeName])
             ? (opts.pathConfigs[typeName] as string[])
-            : [opts.pathConfigs[typeName] as string[]];
+            : [opts.pathConfigs[typeName] as string];
 
         const chosen = configs[stateRef.current.currentMorphIndex % configs.length];
         stateRef.current.isMorphing = true;
@@ -393,7 +393,7 @@ const Cursor = ({
             if (!stateRef.current.hoveredElement || stateRef.current.isMorphing) return;
             const configs = Array.isArray(opts.pathConfigs[typeName])
                 ? (opts.pathConfigs[typeName] as string[])
-                : [opts.pathConfigs[typeName] as string[]];
+                : [opts.pathConfigs[typeName] as string];
             const chosen = configs[stateRef.current.currentMorphIndex % configs.length];
             stateRef.current.isMorphing = true;
             morphPathTo(chosen);
@@ -425,7 +425,7 @@ const Cursor = ({
         stateRef.current.currentMorphType = typeName;
         const configs = Array.isArray(opts.pathConfigs[typeName])
             ? (opts.pathConfigs[typeName] as string[])
-            : [opts.pathConfigs[typeName] as string[]];
+            : [opts.pathConfigs[typeName] as string];
         const chosen = configs[stateRef.current.currentMorphIndex % configs.length];
         morphPathTo(chosen);
         stateRef.current.currentMorphIndex = (stateRef.current.currentMorphIndex + 1) % configs.length;
