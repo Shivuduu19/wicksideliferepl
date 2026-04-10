@@ -542,7 +542,7 @@ const Cursor = ({
     function setupLinkHandling() {
         const selector = `a[href^="/"], a[href^="${window.location.origin}"]`;
         document.querySelectorAll(selector).forEach((a) => {
-            a.addEventListener("click", handleLinkClick);
+            (a as HTMLAnchorElement).addEventListener("click", handleLinkClick);
         });
 
         // mutation observer to bind click handlers on new nodes
@@ -552,7 +552,7 @@ const Cursor = ({
                     if (n.nodeType !== 1) return;
                     const node = n as Element;
                     const anchors = node.querySelectorAll ? node.querySelectorAll(selector) : [];
-                    anchors.forEach((a) => a.addEventListener("click", handleLinkClick));
+                    anchors.forEach((a) => (a as HTMLAnchorElement).addEventListener("click", handleLinkClick));
                 });
             });
         });
@@ -713,7 +713,7 @@ const Cursor = ({
         // remove internal handlers for anchors
         const selector = `a[href^="/"], a[href^="${window.location.origin}"]`;
         document.querySelectorAll(selector).forEach((a) => {
-            (a as Element).removeEventListener("click", handleLinkClick);
+            (a as HTMLAnchorElement).removeEventListener("click", handleLinkClick);
         });
 
         // clear intervals/timeouts
